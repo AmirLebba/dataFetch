@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import "./App.css";
-const fetchPostsByUser = async (userId) => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-  return response.json();
-};
+
 
 const App = () => {
   const [userId, setUserId] = useState(1);
@@ -17,6 +9,15 @@ const App = () => {
   const { isLoading, isError, data } = useQuery(["posts", userId], () =>
     fetchPostsByUser(userId)
   );
+  const fetchPostsByUser = async (userId) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    return response.json();
+  };
 
   useEffect(() => {
     if (data) {
