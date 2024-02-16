@@ -1,6 +1,7 @@
 
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 
 const queryClient = new QueryClient();
@@ -15,9 +16,5 @@ const app = (
   </React.StrictMode>
 );
 
-// Import createRoot from "react-dom/client"
-import { createRoot } from "react-dom/client";
-
-// Use ReactDOM.createRoot to create a root and render the app
 const rootElement = createRoot(root);
 rootElement.render(app);
